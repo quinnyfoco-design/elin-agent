@@ -926,7 +926,7 @@ class ElinTUI:
         self.messages.append({"role": "user", "content": text})
 
     def save_chat(self) -> str:
-        mem_dir = "/home/quinny/elin-project/memories"
+        mem_dir = os.path.expanduser("~/elin-project/memories")
         os.makedirs(mem_dir, exist_ok=True)
         timestamp = dt.datetime.now().strftime("%d-%m-%Y_%H-%M-%S")
         filename = f"chatf-{timestamp}.json"
@@ -936,7 +936,7 @@ class ElinTUI:
         return filename
 
     def load_chat(self, target_file: Optional[str] = None) -> str:
-        mem_dir = "/home/quinny/elin-project/memories"
+        mem_dir = os.path.expanduser("~/elin-project/memories")
         if target_file:
             target_file = target_file.strip().strip("'\"")
             if not os.path.exists(target_file):

@@ -54,7 +54,7 @@ else:
 SEARXNG_URL = os.environ.get("SEARXNG_URL", "http://172.17.0.1:8080/search")
 MAX_CONTEXT_CHARS = int(os.environ.get("MAX_CONTEXT_CHARS", "350000"))
 MAX_VISIBLE_LOG = int(os.environ.get("MAX_VISIBLE_LOG", "500"))
-MEMORIES_DIR = os.environ.get("ELIN_MEMORIES_DIR", "/home/quinny/elin-project/memories")
+MEMORIES_DIR = os.environ.get("ELIN_MEMORIES_DIR", os.path.expanduser("~/elin-project/memories"))
 SKILLS_DIR = os.environ.get("ELIN_SKILLS_DIR", os.path.expanduser("~/elin-project/skills"))
 TELEGRAM_GET_URL = os.environ.get("TELEGRAM_GET_URL", "http://localhost:8000/get_input")
 TELEGRAM_SPEAK_URL = os.environ.get("TELEGRAM_SPEAK_URL", "http://localhost:8000/speak")
