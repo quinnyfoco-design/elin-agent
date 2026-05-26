@@ -53,7 +53,8 @@ def run_linux_command(command):
         command = command.replace("pacman", "pacman --noconfirm")
     if "yay" in command and "--noconfirm" not in command:
         command = command.replace("yay", "yay --noconfirm")
-
+    if "apt" in command and "-y" not in command:
+        command = command.replace("apt", "apt -y")
     risky = ["rm", "dd", "mkfs", "mv", ">", "pacman -R", "sudo", "systemctl", "touch", "/bin", "/dev", "/sys"]
     
     if any(r in command for r in risky):
