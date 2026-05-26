@@ -36,7 +36,7 @@ def format_md(text):
     return text
 
 def load_skills():
-    skills_dir = os.path.expanduser("~/elin-project/skills")
+    skills_dir = os.path.expanduser("~/elin-agent/skills")
     if not os.path.exists(skills_dir):
         return ""
     all_skills = "\n\n=== ADDITIONAL SKILLS ===\n"
@@ -119,7 +119,7 @@ def elin_visual_speak(text, shape="GLOBE"):
     except: pass
 
 # --- NOTEPAD SYSTEM ---
-NOTEPAD_PATH = os.path.expanduser("~/elin-project/.notepad.json")
+NOTEPAD_PATH = os.path.expanduser("~/elin-agent/.notepad.json")
 
 def load_notepad():
     if os.path.exists(NOTEPAD_PATH):

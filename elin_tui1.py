@@ -48,7 +48,7 @@ MAX_VISIBLE_LOG = 500
 
 
 def load_skills() -> str:
-    skills_dir = os.path.expanduser("~/elin-project/skills")
+    skills_dir = os.path.expanduser("~/elin-agent/skills")
     if not os.path.exists(skills_dir):
         return ""
     parts = ["\n\n=== ADDITIONAL SKILLS ===\n"]
@@ -111,7 +111,7 @@ def call_expert_model(expert_id, prompt):
         return f"Expert API Error: {str(e)}"
 
 # --- NOTEPAD SYSTEM ---
-NOTEPAD_PATH = os.path.expanduser("~/elin-project/.notepad.json")
+NOTEPAD_PATH = os.path.expanduser("~/elin-agent/.notepad.json")
 
 def load_notepad():
     if os.path.exists(NOTEPAD_PATH):
@@ -634,7 +634,7 @@ class ElinTUI:
         self.messages.append({"role": "user", "content": text})
 
     def save_chat(self) -> str:
-        mem_dir = os.path.expanduser("~/elin-project/memories")
+        mem_dir = os.path.expanduser("~/elin-agent/memories")
         os.makedirs(mem_dir, exist_ok=True)
         timestamp = dt.datetime.now().strftime("%d-%m-%Y_%H-%M-%S")
         filename = f"chatf-{timestamp}.json"
@@ -644,7 +644,7 @@ class ElinTUI:
         return filename
 
     def load_chat(self, target_file: Optional[str] = None) -> str:
-        mem_dir = os.path.expanduser("~/elin-project/memories")
+        mem_dir = os.path.expanduser("~/elin-agent/memories")
         if target_file:
             target_file = target_file.strip().strip("'\"")
             if not os.path.exists(target_file):

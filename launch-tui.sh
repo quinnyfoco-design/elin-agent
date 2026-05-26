@@ -5,7 +5,7 @@ set -e
 TUI_SCRIPT="elin_tui.py"
 
 # Load API keys from .env
-ENV_FILE="$HOME/elin-project/.env"
+ENV_FILE="$HOME/elin-agent/.env"
 if [ -f "$ENV_FILE" ]; then
     set -a; source "$ENV_FILE"; set +a
 fi
@@ -25,17 +25,17 @@ cleanup() {
     echo "Cleaning up processes..."
     if [[ -n "${SERVER_PID:-}" ]]; then kill "$SERVER_PID" 2>/dev/null || true; fi
     if [[ -n "${BRIDGE_PID:-}" ]]; then kill "$BRIDGE_PID" 2>/dev/null || true; fi
-    cd ~/elin-project/searxng-docker && docker compose down || true
+    cd ~/elin-agent/searxng-docker && docker compose down || true
 }
 trap cleanup EXIT INT TERM
 
-cd ~/elin-project/searxng-docker
+cd ~/elin-agent/searxng-docker
 docker compose up -d
 
-cd ~/elin-project
+cd ~/elin-agent
 
 # Fixed: Removed 'on' from --flash-attn, and added trailing '&' to background it
-~/elin-project/llama.cpp/build/bin/llama-server \
+~/elin-agent/llama.cpp/build/bin/llama-server \
     -m ~/models/qwen/Qwen3.6-35B-A3B-Claude-4.6-Opus-Reasoning-Distilled.Q4_K_M.gguf \
     --host 0.0.0.0 \
     --port 8081 \

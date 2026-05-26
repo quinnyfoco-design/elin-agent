@@ -1,9 +1,9 @@
 #!/bin/bash
 
-cd ~/elin-project/searxng-docker && docker compose up -d
-cd ~/elin-project
+cd ~/elin-agent/searxng-docker && docker compose up -d
+cd ~/elin-agent
 
-~/elin-project/llama.cpp/build/bin/llama-server \
+~/elin-agent/llama.cpp/build/bin/llama-server \
                          -m ~/models/qwen/Qwen3.6-35B-A3B-Claude-4.6-Opus-Reasoning-Distilled.Q4_K_M.gguf \
                          --port 8081 \
                          --ctx-size 16384 \
@@ -29,4 +29,4 @@ python3 elin.py
 
 kill $SERVER_PID
 kill $BRIDGE_PID
-cd ~/elin-project/searxng-docker && docker compose down
+cd ~/elin-agent/searxng-docker && docker compose down

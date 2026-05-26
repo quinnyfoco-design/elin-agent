@@ -52,7 +52,7 @@ BG = -1
 
 # --- Helpers ---
 def load_skills() -> str:
-    skills_dir = os.path.expanduser("~/elin-project/skills")
+    skills_dir = os.path.expanduser("~/elin-agent/skills")
     if not os.path.exists(skills_dir):
         return ""
     parts = ["\n\n=== ADDITIONAL SKILLS ===\n"]
@@ -110,7 +110,7 @@ def call_expert_model(expert_id, prompt):
         return f"Expert API Error: {str(e)}"
 
 # --- NOTEPAD SYSTEM ---
-NOTEPAD_PATH = os.path.expanduser("~/elin-project/.notepad.json")
+NOTEPAD_PATH = os.path.expanduser("~/elin-agent/.notepad.json")
 
 def load_notepad():
     if os.path.exists(NOTEPAD_PATH):
@@ -471,13 +471,13 @@ class ElinTUI:
         self.messages.append({"role": "user", "content": text})
 
     def save_chat(self) -> str:
-        path = os.path.expanduser(f"~/elin-project/memories/chatf-{dt.datetime.now().strftime('%d-%m-%Y_%H-%M-%S')}.json")
+        path = os.path.expanduser(f"~/elin-agent/memories/chatf-{dt.datetime.now().strftime('%d-%m-%Y_%H-%M-%S')}.json")
         os.makedirs(os.path.dirname(path), exist_ok=True)
         with open(path, "w") as f: json.dump(self.messages, f, indent=2)
         return os.path.basename(path)
 
     def load_chat(self, target: Optional[str] = None) -> str:
-        mem_dir = os.path.expanduser("~/elin-project/memories")
+        mem_dir = os.path.expanduser("~/elin-agent/memories")
         if not target:
             files = glob.glob(os.path.join(mem_dir, "chatf-*.json"))
             if not files: raise FileNotFoundError("No saves found")
